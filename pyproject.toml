@@ -1,0 +1,25 @@
+[project]
+name = "ai_agent_local_llm"
+version = "0.1.0"
+description = "ai_agent_local_llm using crewAI"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+requires-python = ">=3.10,<3.14"
+dependencies = [
+    "crewai[tools]>=0.186.1,<1.0.0",
+    "pysr>=1.5.9",
+    "torch>=2.8.0",
+]
+
+[project.scripts]
+ai_agent_local_llm = "ai_agent_local_llm.main:run"
+run_crew = "ai_agent_local_llm.main:run"
+train = "ai_agent_local_llm.main:train"
+replay = "ai_agent_local_llm.main:replay"
+test = "ai_agent_local_llm.main:test"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.crewai]
+type = "crew"

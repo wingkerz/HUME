@@ -141,6 +141,122 @@ agent = Agent(
 )
 ```
 
+## Dataset Configuration
+
+Before running the code, users need to configure the local project paths and select the dataset for the experiment.
+
+### 1. Configure the Project Root Path
+
+First, open `test_main_HUME_Regressor.py` and modify `project_root` to match the local project directory:
+
+```python
+project_root = '/home/ai_agent_local_llm/src'
+```
+
+Replace the path above with the corresponding absolute path on your machine.
+
+### 2. Select the Dataset
+
+The `data/` directory contains several datasets used in our experiments.
+
+To select a dataset, open:
+
+`src/ai_agent_local_llm/tools/screen_pretrain_knowledge_eq.py`
+
+Locate the following argument in the parser configuration:
+
+```python
+parser.add_argument('--case_name', help='case_name', default="lichess")
+```
+
+Modify the `default` value to specify the dataset or experimental case you want to run.
+
+For example, to run the **I.24.6_1_1** case from the **LSR-Transform** benchmark, change it to:
+
+```python
+parser.add_argument('--case_name', help='case_name', default="I.24.6_1_1")
+```
+
+### 3. Configure Dataset Paths
+
+The dataset loading paths must also be updated according to your local directory structure.
+
+In `src/ai_agent_local_llm/tools/screen_pretrain_knowledge_eq.py`, locate the `load_data_SR` function and modify the following path:
+
+```python
+test_data_set_path = 'data/id/test_data_on_%s%s.pickle' % (case_name, add_str)
+```
+
+Replace it with the actual path where the dataset is stored on your machine.
+
+Similarly, update the dataset paths in the following functions:
+
+- `load_data_SR`
+- `load_data_SR_all_following_cars`
+- `load_data_SR_from_csv`
+
+Ensure that the specified paths and data formats are consistent with the corresponding datasets before running the experiments.
+
+### 4. Dataset Description
+
+The `data/` directory contains datasets covering different human behavioral scenarios, including pedestrian dynamics, vehicle-following behavior, chess decision-making, and communication activities.
+
+| Dataset / Directory | Description |
+|---|---|
+| `Juelich_NPY_Data_9` | Pedestrian dynamics data |
+| `npy_pairs_n15_road1` | Vehicle platoon following data used to investigate stop-and-go wave phenomena |
+| `lichess` | Chess decision-making data containing thinking-time intervals from games with 3-, 10-, and 30-minute time controls |
+| `phone` | Human communication data |
+| `agent` | AI agent communication data, including time intervals between agent posts |
+| `NGSIM_dataNpy` | Vehicle trajectory data for car-following behavior |
+| `LSR-Transform` | Symbolic regression benchmark with transformed mathematical expressions |
+
+#### 4.1 NGSIM Car-Following Dataset
+
+For the NGSIM car-following experiments, the trajectory data are organized into the following directories:
+
+```python
+file_folder_list = [
+    "data/NGSIM_dataNpy/trajectories-0750am-0805am",
+    "data/NGSIM_dataNpy/trajectories-0805am-0820am",
+    "data/NGSIM_dataNpy/trajectories-0820am-0835am"
+]
+```
+
+The corresponding dataset and preprocessing resources can be found in the following repository:
+
+[NGSIM Dataset — SR-LLM](https://github.com/ThuOneLab/SR-LLM/tree/main/data/NGSIM_dataNpy)
+
+Please download the required data and update `file_folder_list` according to your local storage paths.
+
+#### 4.2 LSR-Transform Benchmark
+
+The **LSR-Transform** dataset is used to evaluate symbolic regression methods on transformed mathematical expressions.
+
+The dataset is available from Hugging Face:
+
+[LSR-Transform — LLM-SRBench](https://huggingface.co/datasets/nnheui/llm-srbench/viewer/default/lsr_transform)
+
+To use this dataset in our framework:
+
+1. Download the required LSR-Transform benchmark data.
+2. Organize the data into the input and target formats required by the symbolic regression task.
+3. Serialize the processed data into Python `pickle` files compatible with the data-loading functions.
+4. Update `test_data_set_path` in `load_data_SR` to point to the corresponding local files.
+5. Set `case_name` to the desired benchmark case, such as `I.24.6_1_1`.
+
+**Note:** The LSR-Transform dataset should be converted into the expected `pickle` format before being loaded by the current implementation.
+
+### 5. Running Experiments
+
+After configuring the project root, selecting the desired dataset, and updating the corresponding data paths, the experiment can be launched using:
+
+```bash
+python test_main_HUME_Regressor.py
+```
+
+Make sure that the selected dataset is available locally and that the LLM backend has been configured correctly before running the experiment.
+
 Users can switch between different LLM backends by modifying the model initialization configuration without changing the overall multi-agent workflow.
 
 

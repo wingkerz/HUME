@@ -229,23 +229,23 @@ The corresponding dataset and preprocessing resources can be found in the follow
 
 Please download the required data and update `file_folder_list` according to your local storage paths.
 
-#### 4.2 LSR-Transform Benchmark
+#### 4.2 LSR-Transform And Others Benchmark
 
-The **LSR-Transform** dataset is used to evaluate symbolic regression methods on transformed mathematical expressions.
+The **LSR-Transform** and other symbolic regression benchmark datasets, including **Nguyen, Nguyen-c, Keijzer, Constant, and R**, are used to evaluate the performance of symbolic regression methods across diverse mathematical expressions.
 
-The dataset is available from Hugging Face:
+The LSR-Transform dataset is available from Hugging Face:
 
 [LSR-Transform — LLM-SRBench](https://huggingface.co/datasets/nnheui/llm-srbench/viewer/default/lsr_transform)
 
-To use this dataset in our framework:
+To use these benchmark datasets in our framework:
 
-1. Download the required LSR-Transform benchmark data.
+1. Download or generate the required benchmark data.
 2. Organize the data into the input and target formats required by the symbolic regression task.
 3. Serialize the processed data into Python `pickle` files compatible with the data-loading functions.
 4. Update `test_data_set_path` in `load_data_SR` to point to the corresponding local files.
-5. Set `case_name` to the desired benchmark case, such as `I.24.6_1_1`.
+5. Set `case_name` to the desired benchmark case, such as `I.24.6_1_1` for LSR-Transform.
 
-**Note:** The LSR-Transform dataset should be converted into the expected `pickle` format before being loaded by the current implementation.
+**Note:** All benchmark datasets, including LSR-Transform, Nguyen, Nguyen-c, Keijzer, Constant, and R, must be prepared and converted into the expected `pickle` format before being loaded by the current implementation.
 
 ### 5. Running Experiments
 

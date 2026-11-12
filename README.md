@@ -16,6 +16,22 @@ conda activate [your_environment_name]
 
 ---
 
+## Agent Framework
+
+This project is built using **CrewAI**, a multi-agent orchestration framework that enables collaboration and coordination among autonomous AI agents.
+
+For more information about CrewAI, please refer to the [official CrewAI documentation](https://docs.crewai.com/).
+
+
+
+
+
+
+
+
+
+
+
 ## 2. Model Preparation
 
 Before running the project, you need to configure both the **Embedding model** and the **LLM**.

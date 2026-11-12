@@ -1,5 +1,5 @@
-# SymBOL
-SymBOL: A General-Purpose Symbolic Learner for Scientific Discovery Using Bayesian Optimization-Enhanced Large Language Models (TPAMI 2026)
+# HUME
+Collaborative AI Agents Uncover Compact Symbolic Patterns in Human Behaviour Dynamics
 #  Quick Start
 
 ## 1. Environment Setup
@@ -8,7 +8,7 @@ First, make sure you have installed the required dependencies. The project provi
 
 ```bash
 # Create environment using conda
-conda env create -f environment.yml
+conda env create -f agent_environment.yml
 
 # Activate the environment
 conda activate [your_environment_name]
